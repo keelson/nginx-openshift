@@ -14,6 +14,10 @@ RUN yum install epel-release -y && \
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
+    chgrp -R 0 /var/log/nginx && \ 
+    chmod -R g=u /var/log/nginx && \ 
+    chgrp -R 0 /var/lib/nginx && \ 
+    chmod -R g=u /var/lib/nginx && \ 
     sed -i -e '/listen/!b' -e '/80;/!b' -e 's/80;/8080;/' /etc/nginx/nginx.conf && \
     sed -i -e '/user/!b' -e '/nginx/!b' -e '/nginx/d' /etc/nginx/nginx.conf && \
     sed -i 's!/var/run/nginx.pid!/tmp/nginx.pid!g' /etc/nginx/nginx.conf
