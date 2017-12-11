@@ -5,8 +5,6 @@ LABEL io.k8s.description="Nginx Webserver" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="webserver,http,nginx"
 
-ENV NEXUS="https://www.sideburns.de/~bobo/tmo"
-
 RUN useradd -u 1001 nginx
 
 RUN yum install epel-release -y && \
@@ -15,14 +13,13 @@ RUN yum install epel-release -y && \
     yum clean all 
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-	  ln -sf /dev/stderr /var/log/nginx/error.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log && \
     chgrp -R 0 /var/log/nginx && \
     chmod -R g=u /var/log/nginx && \
     chgrp -R 0 /var/lib/nginx && \
     chmod -R g=u /var/lib/nginx
 
 COPY nginx.conf /etc/nginx
-COPY application.conf /etc/nginx.conf.d
 
 EXPOSE 8080
 
