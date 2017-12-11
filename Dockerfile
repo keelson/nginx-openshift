@@ -7,8 +7,9 @@ LABEL io.k8s.description="Nginx Webserver" \
 
 RUN useradd -u 1001 nginx
 
-RUN yum install epel-release -y && \
-    yum update -y  && \
+COPY nginx.repo /etc/yum.repos.d/
+
+RUN yum update -y && \
     yum install -y nginx  && \
     yum clean all 
 
@@ -16,8 +17,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
     chgrp -R 0 /var/log/nginx && \
     chmod -R g=u /var/log/nginx && \
-    chgrp -R 0 /var/lib/nginx && \
-    chmod -R g=u /var/lib/nginx
+    chgrp -R 0 /var/cache/nginx && \
+    chmod -R g=u /var/cache/nginx
 
 COPY nginx.conf /etc/nginx
 
