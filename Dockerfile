@@ -19,7 +19,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     chgrp -R 0 /var/log/nginx && \
     chmod -R g=u /var/log/nginx && \
     chgrp -R 0 /var/lib/nginx && \
-    chmod -R g=u /var/lib/nginx && \
+    chmod -R g=u /var/lib/nginx
 
 COPY nginx.conf /etc/nginx
 COPY application.conf /etc/nginx.conf.d
