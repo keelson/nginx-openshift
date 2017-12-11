@@ -5,7 +5,7 @@ LABEL io.k8s.description="Nginx Webserver" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="webserver,http,nginx"
 
-ENV NEXUS="https://www.sideburns.de/~bobo/tmo"
+ENV NEXUS="https://www.sideburns.de/~bobo/tmp"
 
 RUN useradd -u 1001 nginx
 
@@ -36,4 +36,3 @@ EXPOSE 8080
 STOPSIGNAL SIGTERM
 USER 1001
 CMD ["nginx", "-g", "daemon off;"]
-
