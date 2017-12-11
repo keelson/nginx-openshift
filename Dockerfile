@@ -20,13 +20,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     chmod -R g=u /var/log/nginx && \
     chgrp -R 0 /var/lib/nginx && \
     chmod -R g=u /var/lib/nginx && \
-	  sed -i -e '/listen/!b' -e '/80;/!b' -e 's/80;/8080;/' /etc/nginx/nginx.conf && \
-	  sed -i -e '/user/!b' -e '/nginx/!b' -e '/nginx/d' /etc/nginx/nginx.conf && \
-    sed -i 's!/var/run/nginx.pid!/tmp/nginx.pid!g' /etc/nginx/nginx.conf
 
-RUN && \
-    mkdir /srv/www/app2
-
+COPY nginx.conf /etc/nginx
 COPY application.conf /etc/nginx.conf.d
 
 RUN for i in 1 2; \
