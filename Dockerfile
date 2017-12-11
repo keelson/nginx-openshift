@@ -1,4 +1,4 @@
-FROM centos:centos:7
+FROM centos:centos7
 
 LABEL io.k8s.description="Nginx Webserver" \
       io.k8s.display-name="Nginx" \
