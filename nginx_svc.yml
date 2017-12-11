@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: null
+  labels:
+    app: nginx-openshift
+  name: nginx-openshift
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: nginx-openshift
+    deploymentconfig: nginx-openshift
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
