@@ -27,7 +27,7 @@ COPY application.conf /etc/nginx.conf.d
 RUN for i in 1 2; \
       do \
         mkdir -p /srv/www/app${i} && \
-        curl -s -o /tmp ${NEXUS}/app{i}.zip && \ 
+        curl -s -o /tmp ${NEXUS}/app${i}.zip && \ 
         unzip /tmp/app${i}.zip -d /srv/www/app${i} ; \
       done
 
